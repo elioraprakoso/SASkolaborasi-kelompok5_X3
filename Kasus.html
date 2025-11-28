@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission 3 - Kasus Nyata Media</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background: black;
+    color: #00ff55;
+    font-family: "Courier New", monospace;
+    padding: 20px;
+}
+
+.card {
+    background: #000;
+    border: 2px solid #00ff55;
+    border-radius: 12px;
+    color: #00ff55;
+}
+
+.box {
+    border: 2px solid #00ff55;
+    padding: 20px;
+    border-radius: 14px;
+}
+
+input {
+    background: black;
+    border: 1px solid #00ff55;
+    color: #00ff55;
+    padding: 8px;
+}
+
+.btn-hack {
+    background: #00ff55;
+    color: black;
+    font-weight: bold;
+    border: none;
+}
+</style>
+</head>
+
+<body class="p-4">
+
+<h2><b>MISSION 3 - Kasus Nyata Media</b></h2>
+<p>Read the text, then complete the puzzle to unlock the keyword.</p>
+
+<!-- ========== Kasus-kasus ========== -->
+<div class="container my-4">
+  <h2 class="text-center mb-4" id="Highlight">Kasus Nyata Media</h2>
+
+  <div class="row row-cols-1 row-cols-md-1 g-4">
+
+    <div class="col">
+      <div class="card h-70 p-3">
+        <h5><strong>1. Penyebaran Hoaks & Misinformasi</strong></h5>
+        <p><b>Hoaks Penculikan Anak di Bekasi</b> Dalam pesan berantai di WhatsApp beredar kabar bahwa telah terjadi peNculikan anak di wilayah Bekasi. Pesan itu membuat banyak orang takut dan cemas. Setelah diselidiki, polisi menyatakan bahwa informasi tersebut tidak bEnar. Video dan cerita yang beredar ternyata adalah rekaman lama dan tidak ada penculikan seperti yang disebutkan. Polisi mengingatkan masyarakat aGar selalu memeriksa kebenaran informasi sebelum menyebarkannya, supaya tidak menimbulkan keresahan. </p>
+    </div>
+
+    <div class="col">
+      <div class="card h-70 p-3">
+        <h5><strong>2. Cyberbullying terhadap Public Figure atau Pelajar</strong></h5>
+        <p><b>Pemuda Banyuwangi Melayang akibat Komentar TikTok</b> Seorang pemuda di Banyuwangi menjadi sasaran kemarahan setelah menuliskan komentar yang dianggap menghina saaT seseorang sedang melakukan siaran langsung di TIkTok. Komentar itu memicu emosi pelaku yang kemudian memanggil korban untuk bertemu. Pertemuan tersebut berakhir dengan tindakan kekerasan yang menyebabkan korban terluka parah hingga meninggal dunia. Polisi menindaklanjuti kasus ini sebagai tindak pidana berat. Kejadian ini menunjukkan bahwa komentar kasar atau penghinaan di media sosial dapat berujung pada konFlik serius dan membahayakan keselamatan seseorang.</p>
+    </div>
+  </div>
+</div>
+
+<hr style="border-color:#00ff55">
+
+<h3>Scan: Cari & tentukan kode yang benar</h3>
+<p><b>Cari huruf kapital dan tentukan kode</b> (berupa kata dan semua caps)</p>
+
+<input type="text" id="answer" placeholder="Type your answer...">
+<button class="btn-hack mt-3" onclick="check()">Submit</button>
+
+<p id="result" class="mt-3"></p>
+
+<script>
+function check() {
+  let a = document.getElementById("answer").value.trim().toUpperCase();
+
+  if (a === "NEGATIF") {
+      document.getElementById("result").innerHTML =
+        "✔ Correct!<br><br><b>Keyword: GREEN-03</b><br><br>" +
+        "<a href='home page.html' class='btn btn-hack mt-3'>Restore System</a>";
+
+  } else {
+      document.getElementById("result").innerHTML = "✖ Wrong. Try again.";
+  }
+}
+</script>
+
+<script>
+document.getElementById("restoreBtn").onclick = function () {
+    localStorage.setItem("missions_done", "true");
+    window.location.href = "index.html";
+};
+</script>
+
+</body>
+</html>

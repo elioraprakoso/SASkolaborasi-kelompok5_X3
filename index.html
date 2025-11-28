@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>JAVAEL</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root { --hack-green:#00ff55; }
+    body.black { background: #000 !important; color: var(--hack-green); }
+
+    /* hack overlay */
+    #hackScreen {
+      position: fixed; inset:0; background:#000; color:var(--hack-green);
+      font-family: "Courier New", monospace; padding:32px; z-index:9999;
+      display:none; overflow:auto;
+    }
+    .glitch { animation: flicker 0.12s infinite; }
+    @keyframes flicker { 0%{opacity:1}50%{opacity:.85}100%{opacity:1} }
+
+    .hack-progress{ background:linear-gradient(90deg, rgba(0,255,85,0.12), rgba(0,255,85,0.03)); border-radius:6px; padding:8px; margin:12px 0; }
+    .muted-code{ color:#aaffb9; font-family:monospace; }
+
+    .btn-hack { color:#000; background:var(--hack-green); border:none; }
+    .nav-disabled { pointer-events:none; opacity:.4; }
+
+    /* tight highlight grid */
+    .tight-grid .row > .col { padding-left:6px; padding-right:6px; }
+    .card.h-60 { height:200px; }
+    .card-img-top { object-fit:cover; height:100px; }
+
+    /* small screens */
+    @media (max-width:576px){ .card.h-60 { height:180px; } }
+  </style>
+</head>
+<body class="bg-success-subtle">
+
+  <!-- HACK OVERLAY -->
+  <div id="hackScreen" role="dialog" aria-modal="true">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div class="glitch" style="font-size:18px;font-weight:700;">ACCESSING SYSTEM...</div>
+        <div style="margin-top:8px;font-size:13px;">Initializing sequence... Decrypting media_data_001... ███▒▒▒ 23%</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:12px;">SYSTEM STATUS</div>
+        <div class="muted-code">CRITICAL</div>
+      </div>
+    </div>
+
+    <div class="hack-progress" id="progressArea">
+      <div id="progressText">Decrypting media_data_001... 23%</div>
+      <div class="progress" style="height:10px; background:#031204; border-radius:6px; margin-top:8px;">
+        <div id="progressBar" class="progress-bar" role="progressbar" style="width:23%; background:var(--hack-green);"></div>
+      </div>
+    </div>
+
+    <div id="hackerMessage" style="white-space:pre-line; font-size:14px; margin-top:6px;">
+      <strong>WARNING:</strong> Your device has been corrupted. To restore the system, complete the missions below.
+      Solve the clues to unlock the real website.
+    </div>
+
+    <div id="missionPanel" style="margin-top:14px;">
+      <div style="font-weight:700; margin-bottom:8px;">Intrusion Protocol — Instructions</div>
+      <div style="font-size:13px; margin-bottom:8px;">
+        <em>Hacker:</em> "Complete these 3 mini missions. Each solved mission recovers part of the site. Click <strong>Start Mission</strong> to begin (you'll be redirected to Mission 1)."
+      </div>
+
+      <div class="mb-3">
+        <button class="btn btn-hack" id="startMissionsBtn">Start Mission</button>
+      </div>
+    </div>
+  </div>
+
+  <!--navbar-->
+  <nav class="navbar navbar-expand-lg bg-success nav-disabled" id="mainNavbar">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" href="index.html">JAVAEL</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navcol">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navcol">
+        <div class="navbar-nav">
+          <a class="nav-link active text-light" href="index.html">Home</a>
+          <a class="nav-link text-light" href="vPerkembangan.html">Perkembangan</a>
+          <a class="nav-link text-light" href="vDampak.html">Dampak</a>
+          <a class="nav-link text-light" href="vKasus.html">Kasus</a>
+          <a class="nav-link text-light" href="Analisis.html">Analisis</a>
+          <a class="nav-link text-light" href="Video.html">Video</a>
+          <a class="nav-link text-light" href="Sumber.html">Sumber</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div id="mainContent">
+    <div class="jumbotron" style="background: linear-gradient(rgba(179,226,195,0.644)),url('./img/green.jpg') top/cover; min-height:250px;">
+      <div class="container">
+        <h1 class="display-4 py-4" style="font-family:'Times New Roman',serif;"><strong>Memahami Perkembangan Media di Era Modern</strong></h1>
+        <h3 style="font-family:'Times New Roman',serif;">Mengetahui pengaruh media sosial, dampaknya bagi kehidupan dan cara menggunakannya dengan lebih bijak</h3>
+      </div>
+    </div>
+
+    <!-- Team -->
+    <section class="container my-4">
+      <div class="d-flex justify-content-between align-items-center">
+        <div><h4>X3 Kelompok 5 - JAVAEL</h4></div>
+        <div><button id="seeMembersBtn" class="btn btn-outline-success btn-sm">See members</button></div>
+      </div>
+    </section>
+
+    <!-- Modal members -->
+    <div class="modal fade" id="membersModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header"><h5 class="modal-title">Anggota Kelompok</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <ul>
+              <li>Eliora / 11</li>
+              <li>Jamiel / 16</li>
+              <li>Vania / 31</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overview -->
+    <section class="container my-3">
+      <h2 class="text-center mb-4" style="font-family:'Times New Roman',serif;"><b>Overview</b></h2>
+      <div class="card">
+        <div class="card-body">
+          <p>Website ini membahas bagaimana media (khususnya media sosial) telah berkembang dan memengaruhi cara kita hidup, berinteraksi, dan memahami informasi. Lewat bagian perkembangan media, dampak, contoh kasus nyata, dan analisis, kami berharap pengunjung dapat melihat bahwa penggunaan media sosial bukan hanya soal hiburan, tapi juga soal kesadaran, tanggung jawab, dan peran kita sebagai warga digital.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latar Belakang -->
+    <section class="container my-3">
+      <h2 class="text-center mb-4" style="font-family:'Times New Roman',serif;"><b>Latar Belakang</b></h2>
+      <div class="card">
+        <div class="card-body">
+          <p>Media sosial sekarang sudah menjadi bagian besar dari kehidupan sehari-hari: tempat berbagi, belajar, mencari hiburan, bahkan membentuk opini publik. Perkembangan ini membawa kemudahan sekaligus tantangan—mulai dari budaya instan hingga penyebaran misinformasi. Penting bagi kita memahami perjalanan media agar bisa menjadi pengguna yang kritis dan bertanggung jawab.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu navigasi-->
+    <section class="container my-5">
+      <h2 class="text-center mb-4" style="font-family:'Times New Roman',serif;"><b>Highlights</b></h2>
+      <div class="tight-grid">
+        <div class="row row-cols-1 row-cols-md-4 g-1">
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body"><h5 class="card-title">Perkembangan Media</h5><p class="card-text">Evolusi dari radio → TV → internet → media sosial.</p></div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body"><h5 class="card-title">Dampak Media</h5><p class="card-text">Positif & negatif terhadap gaya hidup modern.</p></div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body"><h5 class="card-title">Contoh Kasus</h5><p class="card-text">Kasus nyata yang benar terjadi terkait hoaks dan cyberbullying</p></div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body"><h5 class="card-title">Analisis & Refleksi</h5><p class="card-text">Memahami dampak & cara menggunakan medsos secara bijak.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container my-5 text-center">
+      <a class="btn btn-outline-success" id="hackButton" style="font-size:19px; cursor:pointer;">Next</a>
+    </section>
+
+<!--Footer-->
+    <footer class="bg-success text-white text-center mt-5 p-3">
+      <p>&copy; 2025 - JAVAEL. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <!-- navSection hidden until restored -->
+  <section id="navSection" class="container my-5 text-white" style="display:none;">
+    <h2 class="text-center mb-4"><b>Navigasi Konten</b></h2>
+    <div class="row row-cols-1 row-cols-md-2 g-3">
+      <div class="col"><div class="dark-card"><h5>Perkembangan Media</h5><p>Evolusi media dari masa ke masa.</p></div></div>
+      <div class="col"><div class="dark-card"><h5>Dampak Media</h5><p>Pengaruh media dalam kehidupan modern.</p></div></div>
+      <div class="col"><div class="dark-card"><h5>Contoh Kasus</h5><p>Kasus nyata yang terjadi.</p></div></div>
+      <div class="col"><div class="dark-card"><h5>Analisis</h5><p>Refleksi & interpretasi.</p></div></div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // elements
+    const hackScreen = document.getElementById('hackScreen');
+    const mainContent = document.getElementById('mainContent');
+    const mainNavbar = document.getElementById('mainNavbar');
+    const navSection = document.getElementById('navSection');
+    const startBtn = document.getElementById('startMissionsBtn'); // may be null if overlay not shown
+    const hackButton = document.getElementById('hackButton');
+    const missionProgressEl = document.getElementById('missionProgress');
+
+    // Restore website if all missions complete
+if (localStorage.getItem("missions_done") === "true")
+    // remove hack mode
+    hackScreen.style.display = "none";
+    document.body.classList.remove("black");
+    mainContent.style.filter = "none";
+    mainNavbar.classList.remove("nav-disabled");
+
+    // also hide the Next button so user can't trigger hack again
+if (localStorage.getItem("missions_done") !== "true") {
+    hackButton.addEventListener('click', () => {
+        mainContent.style.filter = 'blur(2px) grayscale(.2)';
+        hackScreen.style.display = 'block';
+        document.body.classList.add('black');
+        mainNavbar.classList.add('nav-disabled');
+        fakeProgressTo(100, 1200);
+    });
+} else {
+    // If restored, hide the button entirely
+    hackButton.style.display = "none";
+}
+
+
+    // Next button shows overlay
+    hackButton.addEventListener('click', () => {
+      mainContent.style.filter = 'blur(2px) grayscale(.2)';
+      hackScreen.style.display = 'block';
+      document.body.classList.add('black');
+      mainNavbar.classList.add('nav-disabled');
+      fakeProgressTo(100, 1200);
+    });
+
+    // Start Mission navigates to missions.html
+    startBtn.addEventListener('click', () => {
+  window.location.href="Perkembangan.html";
+});
+
+    function fakeProgressTo(target, duration = 1500) {
+      const progressBar = document.getElementById('progressBar');
+      const progressText = document.getElementById('progressText');
+      let current = parseInt(progressBar.style.width) || 0;
+      const stepTime = Math.max(20, Math.floor(duration / Math.max(1, target - current)));
+      const interval = setInterval(() => {
+        current += 2;
+        if (current > 100) current = 100;
+        progressBar.style.width = current + '%';
+        progressText.textContent = 'Decrypting... ' + current + '%';
+        if (current >= target) clearInterval(interval);
+      }, stepTime);
+    }
+
+    // Members modal
+    document.getElementById('seeMembersBtn').addEventListener('click', () => {
+      const membersModal = new bootstrap.Modal(document.getElementById('membersModal'));
+      membersModal.show();
+    });
+
+    // missionProgress initial
+    if (missionProgressEl) missionProgressEl.textContent = '0';
+
+    // SYSTEM RESTORE CHECK
+function checkRestore() {
+  const m1 = localStorage.getItem("mission1");
+  const m2 = localStorage.getItem("mission2");
+  const m3 = localStorage.getItem("mission3");
+
+  if (m1 && m2 && m3) {
+    // restore website
+    hackScreen.style.display = "none";
+    mainContent.style.filter = "none";
+    mainNavbar.classList.remove("nav-disabled");
+    document.body.classList.remove("black");
+  }
+}
+
+checkRestore();
+// Restore system if missions done
+if (localStorage.getItem("missions_done") === "true") {
+    hackScreen.style.display = "none";
+    mainContent.style.filter = "none";
+    document.body.classList.remove('black');
+    mainNavbar.classList.remove('nav-disabled');
+}
+  </script>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  // If missions_done flag is set in localStorage -> restore site UI
+  const done = localStorage.getItem('missions_done');
+  if (done === 'true') {
+    // Remove the corrupted overlay if visible
+    const hackScreen = document.getElementById('hackScreen');
+    if (hackScreen) hackScreen.style.display = 'none';
+
+    // Remove black theme class
+    document.body.classList.remove('black');
+
+    // Re-enable navbar (remove disabled class)
+    const mainNavbar = document.getElementById('mainNavbar');
+    if (mainNavbar) mainNavbar.classList.remove('nav-disabled');
+
+    // Show the content navigation section (if you want)
+    const navSection = document.getElementById('navSection');
+    if (navSection) navSection.style.display = 'block';
+
+    // Update any progress UI if needed
+    const missionProgressEl = document.getElementById('missionProgress');
+    if (missionProgressEl) missionProgressEl.textContent = '4';
+
+    // Optional: clear the flag so it doesn't auto-restore next visit
+    // localStorage.removeItem('missions_done');
+  }
+});
+</script>
+
+</body>
+</html>

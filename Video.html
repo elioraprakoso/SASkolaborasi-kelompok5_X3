@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #d7e8dc;
+        }
+
+        .puzzle-piece {
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+            border: 2px solid #198754;
+            cursor: grab;
+        }
+
+        #puzzleBoard {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        #targetBoard {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .drop-zone {
+            width: 100px;
+            height: 100px;
+            border: 2px dashed #198754;
+        }
+    </style>
+</head>
+
+<body class="bg-success-subtle">
+
+<!--navbar-->
+<nav class="navbar navbar-expand-lg bg-success">
+  <div class="container-fluid">
+    <a class="navbar-brand text-light" href="index.html">JAVAEL</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="navbar-nav">
+        <a class="nav-link text-light" href="index.html">Home</a>
+        <a class="nav-link text-light" href="Perkembangan.html">Perkembangan</a>
+        <a class="nav-link text-light" href="Dampak.html">Dampak</a>
+        <a class="nav-link text-light" href="Kasus.html">Kasus</a>
+        <a class="nav-link text-light" href="Analisis.html">Analisis</a>
+        <a class="nav-link text-light active" href="Video.html">Video</a>
+        <a class="nav-link text-light" href="Sumber.html">Sumber</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!--Video-->
+<section class="container my-4 text-center">
+  <h1 class="mb-4" style="font-family:'Times New Roman',serif;"><b>Video Olahan Nabati Non Pangan</b></h1>
+  <video controls class="myVideo">
+      <source src="./img/HOW TO MAKE LAVENDER LATTE CANDLE.mp4" type="video/mp4">
+  </video>
+
+</section>
+
+<style>
+
+.myVideo {
+    width: 70%;             
+    max-width: 800px;       
+    border: 4px solid #4b8155; 
+    border-radius: 18px;    
+    display: block;
+    margin: 0 auto;        
+    box-shadow: 0px 4px 20px rgba(0,0,0,0.25); 
+}
+</style>
+
+
+
+<!-- PUZZLE GAME SECTION -->
+<div class="container my-5">
+    <h2 class="text-center mb-3" style="font-family:'Times New Roman',serif;"><b>Mini Game: Puzzle</b></h2>
+    <p class="text-center">Drag and drop the pieces to complete the image.</p>
+
+    <div class="row justify-content-center">
+        <div class="col-md-5 text-center">
+            <h5><b>Puzzle Pieces</b></h5>
+            <div id="puzzleBoard">
+                <!-- Replace background-image with your own puzzle slices -->
+                <div class="puzzle-piece" draggable="true" id="p5"
+                     style="background-image: url('./img/image_part_005.jpg');"></div>
+                <div class="puzzle-piece" draggable="true" id="p8"
+                     style="background-image: url('./img/image_part_008.jpg');"></div>
+                <div class="puzzle-piece" draggable="true" id="p1"
+                     style="background-image: url('./img/image_part_001.jpg');"></div>
+                <div class="puzzle-piece" draggable="true" id="p2"
+                     style="background-image: url('./img/image_part_002.jpg');"></div>
+                <div class="puzzle-piece" draggable="true" id="p6"
+                     style="background-image: url('./img/image_part_006.jpg');"></div>
+                <div class="puzzle-piece" draggable="true" id="p7"
+                     style="background-image: url('./img/image_part_007.jpg');"></div>
+                <div class="puzzle-piece" draggable="true" id="p3"
+                     style="background-image: url('./img/image_part_003.jpg');"></div>
+                <div class="puzzle-piece" draggable="true" id="p4"
+                     style="background-image: url('./img/image_part_004.jpg');"></div>
+                <div class="puzzle-piece" draggable="true" id="p9"
+                     style="background-image: url('./img/image_part_009.jpg');"></div>
+            </div>
+        </div>
+
+        <div class="col-md-5 text-center">
+            <h5><b>Assemble Here</b></h5>
+            <div id="targetBoard">
+                <div class="drop-zone" data-id="p1"></div>
+                <div class="drop-zone" data-id="p2"></div>
+                <div class="drop-zone" data-id="p3"></div>
+                <div class="drop-zone" data-id="p4"></div>
+                <div class="drop-zone" data-id="p5"></div>
+                <div class="drop-zone" data-id="p6"></div>
+                <div class="drop-zone" data-id="p7"></div>
+                <div class="drop-zone" data-id="p8"></div>
+                <div class="drop-zone" data-id="p9"></div>
+            </div>
+
+            <p id="statusMsg" class="mt-3 fw-bold"></p>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- FOOTER -->
+<footer class="bg-success text-white text-center mt-5 p-3">
+  <p>&copy; 2025 JAVAEL. All rights reserved.</p>
+</footer>
+
+
+<script>
+// ---- Drag & Drop Logic ----
+let draggedPiece = null;
+
+document.querySelectorAll(".puzzle-piece").forEach(piece => {
+    piece.addEventListener("dragstart", () => {
+        draggedPiece = piece;
+    });
+});
+
+document.querySelectorAll(".drop-zone").forEach(zone => {
+    zone.addEventListener("dragover", e => e.preventDefault());
+
+    zone.addEventListener("drop", function() {
+        if (!this.firstChild) {
+            this.appendChild(draggedPiece);
+
+            // Check if the correct piece was placed
+            if (draggedPiece.id === this.dataset.id) {
+                this.style.borderColor = "lime";
+            } else {
+                this.style.borderColor = "red";
+            }
+
+            checkWin();
+        }
+    });
+});
+
+function checkWin() {
+    const zones = document.querySelectorAll(".drop-zone");
+    let correct = 0;
+
+    zones.forEach(z => {
+        if (z.firstChild && z.firstChild.id === z.dataset.id) correct++;
+    });
+
+    if (correct === 9) {
+        document.getElementById("statusMsg").innerHTML =
+            "<span class='text-success'>✔ Puzzle Complete!</span>";
+    }
+}
+</script>
+
+</body>
+</html>

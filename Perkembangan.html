@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission 1 - Perkembangan Media</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background: black;
+    color: #00ff55;
+    font-family: "Courier New", monospace;
+    padding: 20px;
+}
+
+.card {
+    background: #000;
+    border: 2px solid #00ff55;
+    border-radius: 12px;
+    color: #00ff55;
+}
+
+.box {
+    border: 2px solid #00ff55;
+    padding: 20px;
+    border-radius: 14px;
+}
+
+input {
+    background: black;
+    border: 1px solid #00ff55;
+    color: #00ff55;
+    padding: 8px;
+}
+
+.btn-hack {
+    background: #00ff55;
+    color: black;
+    font-weight: bold;
+    border: none;
+}
+</style>
+</head>
+
+<body class="p-4">
+
+<h2><b>MISSION 1 — Perkembangan Media</b></h2>
+<p>Read the text, then solve the puzzle at the bottom to unlock the keyword.</p>
+
+<div class="box my-4">
+<h4>a. Pengertian Media</h4>
+<p>
+Media adalah segala bentuk alat atau sarana yang digunakan untuk menyampaikan informasi dari satu pihak ke pihak lain. Mulai dari gambar, tulisan, radio, televisi, hingga internet dan media sosial yang kita pakai sehari-hari. Media membuat informasi bisa tersebar lebih cepat, lebih luas, dan lebih mudah dipahami. Namun, semakin berkembangnya media, semakin besar juga pengaruhnya terhadap cara orang berpikir, bersikap, dan mengambil keputusan.
+
+<h4>b. Sejarah Perkembangan Media</h4>
+<p>
+Perkembangan media modern di Indonesia dimulai dari radio, terutama pada masa pergerakan nasional dan sesudah Proklamasi. Radio menjadi alat penting yang menyebarkan informasi secara cepat ke seluruh masyarakat. Setelah itu, televisi hadir digunakan untuk membawa informasi dalam bentuk visual dan menjadi media utama selama puluhan tahun.
+Pada tahun 1990-an, internet membuka cara komunikasi baru yang interaktif dan tanpa batas. Dari situlah muncul media sosial di era 2000-an, yang membuat setiap orang bisa menjadi pembuat konten (influencer), penyebar informasi, bahkan pembentuk opini. Perubahan ini menciptakan peluang besar, tetapi juga memberikan tantangan seperti hoaks, budaya instan, dan tuntutan agar setiap orang lebih bertanggung jawab dalam menggunakan media.
+</p>
+
+<h4>c. Ringkasan Singkat</h4>
+<p>
+Perkembangan ini menunjukkan betapa cepatnya perubahan cara manusia menerima informasi. Dari penyiaran satu arah menjadi komunikasi langsung dan real-time, perkembangan media membawa kemudahan juga membuat kita untuk lebih bijak, kritis, dan sadar dampak dari setiap informasi yang didapatkan.
+</p>
+</div>
+
+<hr style="border-color:#00ff55">
+
+<h3>Order: Urutan perkembangan yang benar</h3>
+<p><b>bentuk tulisan: X-X-X-X</b> (tidak memakai spasi)</p>
+
+<input type="text" id="answer" placeholder="Type your answer...">
+<button class="btn-hack mt-3" onclick="check()">Submit</button>
+
+<p id="result" class="mt-3"></p>
+
+<script>
+function check() {
+    let a = document.getElementById("answer").value.toLowerCase().trim();
+
+    if (a === "radio-televisi-internet-mediasosial") {
+        document.getElementById("result").innerHTML =
+          "✔ Correct! Keyword: <b>GREEN-01</b><br><br><a href='dampak.html' class='btn btn-hack mt-3'>Next Mission</a>";
+    } else {
+        document.getElementById("result").innerHTML = "✖ Wrong. Try again.";
+    }
+}
+</script>
+</body>
+</html>
